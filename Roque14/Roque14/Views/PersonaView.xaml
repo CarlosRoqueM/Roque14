@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Roque14.Views.PersonaView">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Matricula" HorizontalOptions="Center" FontSize="Title" Margin="15" TextColor="White"></Label>
+            <DatePicker Margin="20" MinimumDate="01/01/2023"
+            MaximumDate="01/01/2024"
+            Date="{Binding SelectedDate}" />
+            <Picker x:Name="picker" Margin="20"
+                Title="Selecciona tu genero">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Femenino</x:String>
+                        <x:String>Masculino</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry Text="{Binding Nombre}" Margin="20" Placeholder="Nombre" ></Entry>
+            <Entry Text="{Binding Curso}" Margin="20" Placeholder="Curso" ></Entry>
+            <Button Margin="20" Text="Guardar" Command="{Binding GuardarCommand}"></Button>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+            <ListView x:Name="LvPersonas" Margin="20"
+                      ItemsSource="{Binding Personas}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nombre}"
+                                  Detail="{Binding Curso}"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
